@@ -1,0 +1,43 @@
+<div class="user_data w-full px-20 py-3 border bg flex gap-2 justify-between bg-white rounded-lg hover:bg-slate-300 hover:outline-dotted outline-rose-600 transition-all ">
+    <div class="flex justify-between gap-20 items-center">
+
+        <div>
+            {{index+1}}
+        </div>
+        <div class="text-xl  min-w-32 max-w-36">
+            <h1>{{itemprop.student_name}}
+            </h1>
+        </div>
+        <div class="max-w-32 min-w-32">
+            {{itemprop.email}}
+        </div>
+        <div class="max-w-32 min-w-32">
+            @if (itemprop.isAdmin) {
+               <h1 class="pl-10 text-red-500 font-semibold">
+
+                   Admin
+            </h1>
+            }
+            @else {
+                <h1 class="pl-10 text-green-500 font-semibold">
+                    Student 
+             </h1>
+            }
+        </div>
+    </div>
+    <div class="flex justify-between ">
+
+        <div class="w-32 ">
+            @if (!itemprop.isAdmin) {
+            <i [routerLink]="'/user-details/'+itemprop.email" class="fa-regular fa-pen-to-square cursor-pointer hover:scale-110 hover:text-green-500"></i>
+            }
+        </div>
+        
+
+            <div class="w-32 ">
+                @if (!itemprop.isAdmin) {
+                <i (click)="popUp(itemprop.email)" class="fa-solid fa-trash  hover:text-red-500 hover:scale-105 cursor-pointer"></i>
+                 }
+            </div>
+    </div>
+</div>

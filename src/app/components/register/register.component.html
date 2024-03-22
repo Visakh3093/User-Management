@@ -1,0 +1,49 @@
+<div class="bg-gray-600 min-h-screen w-full flex flex-col justify-center gap-10">
+    <div class="flex w-full px-10 justify-center">
+
+        <h1 class="text-white text-3xl font-bold">Register</h1>
+    </div>
+    <div>
+        
+
+        <form [formGroup]="studentFormData" (submit)="handleSubmit()" class="max-w-sm mx-auto">
+            @for (item of inputData; track $index) {
+            @switch (item.type) {
+            @case ("toggle") {
+
+            <label class="inline-flex items-center cursor-pointer">
+                <input formControlName={{item.key}} type="checkbox" class="sr-only peer">
+                <div
+                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                </div>
+                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{item.label}}</span>
+            </label>
+            <br>
+            <br>
+
+            }
+            @default {
+
+            <div class="mb-5">
+                <label for={{item.key}}
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{item.label}}</label>
+                <input formControlName={{item.key}} type={{item.type}} id={{item.key}}
+                    [class]="'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'"
+                    placeholder={{item.label}} />
+                @if (errorObj[item.key]) {
+
+                <label class="text-red-500 text-s">{{errorObj[item.key]}}</label>
+                }
+            </div>
+            }
+            }
+            }
+
+            
+            <button type="submit"
+                class="text-white bg-blue-700 hover:bg-blue-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        </form>
+    </div>
+
+
+</div>
